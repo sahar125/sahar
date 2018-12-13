@@ -12,6 +12,8 @@ navbar:
       menu: 
         - text: Maps of Tunisia 
           href: Projects.html
+        - text: text mining 
+          href: text_m.html
         - text: python
           href: https://www.kaggle.com/sahar3/python
      

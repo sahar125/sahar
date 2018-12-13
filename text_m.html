@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="I have a dream : le discours de Martin Luther King" />
+
+
+<title>text_mining</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Sahar Hamadi</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="cv2.html">CV</a>
+</li>
+<li>
+  <a href="cv.html">Cover letter</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Projects.html">Maps of Tunisia</a>
+    </li>
+    <li>
+      <a href="https://www.kaggle.com/sahar3/python">python</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="saharhamadi53@gmail.com">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/sahar125">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.facebook.com/hamadi.sahar.9">
+    <span class="fa fa-facebook fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/sahar-hamadi-06367512b/">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">text_mining</h1>
+<h4 class="author"><em>I have a dream : le discours de Martin Luther King</em></h4>
+
+</div>
+
+
+<pre><code>## Warning in readLines(filePath): ligne finale incomplète trouvée dans &#39;C:/
+## Users/dell/Documents/R/sahar125/text.txt&#39;</code></pre>
+<pre><code>## &lt;&lt;SimpleCorpus&gt;&gt;
+## Metadata:  corpus specific: 1, document level (indexed): 0
+## Content:  documents: 61
+## 
+##  [1] Je suis heureux de me joindre à vous aujourdhui pour participer à ce que lhistoire appellera la plus grande démonstration pour la liberté dans les annales de notre nation.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+##  [2]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+##  [3] Il y a un siècle de cela, un grand Américain qui nous couvre aujourdhui de son ombre symbolique signait notre Proclamation dÉmancipation. Ce décret capital se dresse, comme un grand phare illuminant despérance les millions desclaves marqués au feu dune brûlante injustice. Ce décret est venu comme une aube joyeuse terminer la longue nuit de leur captivité.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+##  [4]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+##  [5] Mais, cent ans plus tard, le Noir nest toujours pas libre. Cent ans plus tard, la vie du Noir est encore terriblement handicapée par les menottes de la ségrégation et les chaînes de la discrimination. Cent ans plus tard, le Noir vit à lécart sur son îlot de pauvreté au milieu dun vaste océan de prospérité matérielle. Cent ans plus tard, le Noir languit encore dans les coins de la société américaine et se trouve exilé dans son propre pays.                                                                                                                                                                                                                                                                                                                                                                                                                     
+##  [6]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+##  [7] Cest pourquoi nous sommes venus ici aujourdhui dénoncer une condition humaine honteuse. En un certain sens, nous sommes venus dans notre capitale nationale pour encaisser un chèque. Quand les architectes de notre République ont magnifiquement rédigé notre Constitution de la Déclaration dIndépendance, ils signaient un chèque dont tout Américain devait hériter. Ce chèque était une promesse quà tous les hommes, oui, aux Noirs comme aux Blancs, seraient garantis les droits inaliénables de la vie, de la liberté et de la quête du bonheur.                                                                                                                                                                                                                                                                                                                    
+##  [8]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+##  [9] Il est évident aujourdhui que lAmérique a manqué à ses promesses à légard de ses citoyens de couleur. Au lieu dhonorer son obligation sacrée, lAmérique a délivré au peuple Noir un chèque en bois, qui est revenu avec linscription  provisions insuffisantes . Mais nous refusons de croire quil ny a pas de quoi honorer ce chèque dans les vastes coffres de la chance, en notre pays. Aussi, sommes-nous venus encaisser ce chèque, un chèque qui nous donnera sur simple présentation les richesses de la liberté et la sécurité de la justice.                                                                                                                                                                                                                                                                                                                   
+## [10]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [11] Nous sommes également venus en ce lieu sacrifié pour rappeler à lAmérique les exigeantes urgences de lheure présente. Ce nest pas le moment de soffrir le luxe de laisser tiédir notre ardeur ou de prendre les tranquillisants des demi-mesures. Cest lheure de tenir les promesses de la démocratie. Cest lheure démerger des vallées obscures et désolées de la ségrégation pour fouler le sentier ensoleillé de la justice raciale. Cest lheure darracher notre nation des sables mouvant de linjustice raciale et de létablir sur le roc de la fraternité. Cest lheure de faire de la justice une réalité pour tous les enfants de Dieu. Il serait fatal pour la nation de fermer les yeux sur lurgence du moment. Cet étouffant été du légitime mécontentement des Noirs ne se terminera pas sans quadvienne un automne vivifiant de liberté et dégalité.
+## [12]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [13] 1963 nest pas une fin, cest un commencement. Ceux qui espèrent que le Noir avait seulement besoin de se défouler et quil se montrera désormais satisfait, auront un rude réveil, si la nation retourne à son train-train habituel.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+## [14]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [15] Il ny aura ni repos ni tranquillité en Amérique jusquà ce quon ait accordé au peuple Noir ses droits de citoyen. Les tourbillons de la révolte ne cesseront débranler les fondations de notre nation jusquà ce que le jour éclatant de la justice apparaisse.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+## [16]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [17] Mais il y a quelque chose que je dois dire à mon peuple, debout sur le seuil accueillant qui donne accès au palais de la justice : en procédant à la conquête de notre place légitime, nous ne devons pas nous rendre coupables dagissements répréhensibles.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+## [18]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [19] Ne cherchons pas à satisfaire notre soif de liberté en buvant à la coupe de lamertume et de la haine. Nous devons toujours mener notre lutte sur les hauts plateaux de la dignité et de la discipline. Nous ne devons pas laisser nos revendications créatrices dégénérer en violence physique. Sans cesse, nous devons nous élever jusquaux hauteurs majestueuses où la force de lâme sunit à la force physique.                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+## [20]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [21] Le merveilleux esprit militant qui a saisi la communauté noire ne doit pas nous entraîner vers la méfiance de tous les Blancs, car beaucoup de nos frères blancs, leur présence ici aujourdhui en est la preuve, ont compris que leur destinée est liée à la nôtre. Lassaut que nous avons monté ensemble pour emporter les remparts de linjustice doit être mené par une armée bi-raciale. Nous ne pouvons marcher tout seul au combat. Et au cours de notre progression il faut nous engager à continuer daller de lavant ensemble. Nous ne pouvons pas revenir en arrière.                                                                                                                                                                                                                                                                                                
+## [22]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [23] Il y a des gens qui demandent aux militants des Droits Civiques :  Quand serez-vous enfin satisfaits ?  Nous ne serons jamais satisfaits aussi longtemps que le Noir sera la victime dindicibles horreurs de la brutalité policière. Nous ne pourrons être satisfaits aussi longtemps que nos corps, lourds de la fatigue des voyages, ne trouveront pas un abri dans les motels des grandes routes ou les hôtels des villes.                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## [24]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [25] Nous ne pourrons être satisfaits aussi longtemps que la liberté de mouvement du Noir ne lui permettra guère que daller dun petit ghetto à un ghetto plus grand. Nous ne pourrons être satisfaits aussi longtemps que nos enfants, même devenus grands, ne seront pas traités en adultes et verront leur dignité bafouée par les panneaux  Réservé aux Blancs . Nous ne pourrons être satisfaits aussi longtemps quun Noir du Mississippi ne pourra pas voter et quun Noir de New-York croira quil na aucune raison de voter. Non, nous ne sommes pas satisfaits et ne le serons jamais, tant que le droit ne jaillira pas comme leau, et la justice comme un torrent intarissable.                                                                                                                                                                                       
+## [26]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [27] Je nignore pas que certains dentre vous ont été conduis ici par un excès dépreuves et de tribulations. Daucuns sortent à peine détroites cellules de prison. Dautres viennent de régions où leur quête de liberté leur a valu dêtre battus par les orages de la persécution et secoués par les bourrasques de la brutalité policière. Vous avez été les héros de la souffrance créatrice. Continuez à travailler avec la certitude que la souffrance imméritée vous sera rédemptrice.                                                                                                                                                                                                                                                                                                                                                                                      
+## [28]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [29] Retournez dans le Mississippi, retournez en Alabama, retournez en Caroline du Sud, retournez en Georgie, retournez en Louisiane, retournez dans les taudis et les ghettos des villes du Nord, sachant que de quelque manière que ce soit cette situation peut et va changer. Ne croupissons pas dans la vallée du désespoir.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+## [30]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [31] Je vous le dis ici et maintenant, mes amis, bien que, oui, bien que nous ayons à faire face à des difficultés aujourdhui et demain je fais toujours ce rêve : cest un rêve profondément ancré dans lidéal américain. Je rêve que, un jour, notre pays se lèvera et vivra pleinement la véritable réalité de son credo :  Nous tenons ces vérités pour évidentes par elles-mêmes que tous les hommes sont créés égaux .                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+## [32]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [33] Je rêve quun jour sur les collines rousses de Georgie les fils danciens esclaves et ceux danciens propriétaires desclaves pourront sasseoir ensemble à la table de la fraternité.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+## [34]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [35] Je rêve quun jour, même lEtat du Mississippi, un Etat où brûlent les feux de linjustice et de loppression, sera transformé en un oasis de liberté et de justice.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+## [36]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [37] Je rêve que mes quatre petits-enfants vivront un jour dans une nation où ils ne seront pas jugés sur la couleur de leur peau, mais sur la valeur de leur caractère. Je fais aujourdhui un rêve !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+## [38]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [39] Je rêve quun jour, même en Alabama, avec ses abominables racistes, avec son gouverneur à la bouche pleine des mots  opposition  et  annulation  des lois fédérales, que là même en Alabama, un jour les petits garçons noirs et les petites filles blanches pourront se donner la main, comme frères et surs. Je fais aujourdhui un rêve !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+## [40]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [41] Je rêve quun jour toute la vallée sera relevée, toute colline et toute montagne seront rabaissées, les endroits escarpés seront aplanis et les chemins tortueux redressés, la gloire du Seigneur sera révélée à tout être fait de chair.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+## [42]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [43] Telle est notre espérance. Cest la foi avec laquelle je retourne dans le Sud.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+## [44]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [45] Avec cette foi, nous serons capables de distinguer dans la montagne du désespoir une pierre despérance. Avec cette foi, nous serons capables de transformer les discordes criardes de notre nation en une superbe symphonie de fraternité.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+## [46]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [47] Avec cette foi, nous serons capables de travailler ensemble, de prier ensemble, de lutter ensemble, daller en prison ensemble, de défendre la cause de la liberté ensemble, en sachant quun jour, nous serons libres. Ce sera le jour où tous les enfants de Dieu pourront chanter ces paroles qui auront alors un nouveau sens :  Mon pays, cest toi, douce terre de liberté, cest toi que je chante. Terre où sont morts mes pères, terre dont les pèlerins étaient fiers, que du flanc de chacune de tes montagnes, sonne la cloche de la liberté !  Et, si lAmérique doit être une grande nation, que cela devienne vrai.                                                                                                                                                                                                                                              
+## [48]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [49] Que la cloche de la liberté sonne du haut des merveilleuses collines du New Hampshire !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+## [50] Que la cloche de la liberté sonne du haut des montagnes grandioses de lEtat de New-York !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+## [51] Que la cloche de la liberté sonne du haut des sommets des Alleghanys de Pennsylvanie !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+## [52] Que la cloche de la liberté sonne du haut des cimes neigeuses des montagnes rocheuses du Colorado !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+## [53] Que la cloche de la liberté sonne depuis les pentes harmonieuses de la Californie !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+## [54]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [55] Mais cela ne suffit pas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+## [56]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [57] Que la cloche de la liberté sonne du haut du mont Stone de Georgie !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+## [58] Que la cloche de la liberté sonne du haut du mont Lookout du Tennessee !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+## [59] Que la cloche de la liberté sonne du haut de chaque colline et de chaque butte du Mississippi ! Du flanc de chaque montagne, que sonne le cloche de la liberté !                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+## [60]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+## [61] Quand nous permettrons à la cloche de la liberté de sonner dans chaque village, dans chaque hameau, dans chaque ville et dans chaque Etat, nous pourrons fêter le jour où tous les enfants de Dieu, les Noirs et les Blancs, les Juifs et les non-Juifs, les Protestants et les Catholiques, pourront se donner la main et chanter les paroles du vieux Negro Spiritual :  Enfin libres, enfin libres, grâce en soit rendue au Dieu tout puissant, nous sommes enfin libres ! .</code></pre>
+<pre class="r"><code>toSpace &lt;- content_transformer(function (x , pattern ) gsub(pattern, &quot; &quot;, x))
+docs &lt;- tm_map(docs, toSpace, &quot;/&quot;)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, toSpace, &quot;/&quot;): transformation drops
+## documents</code></pre>
+<pre class="r"><code>docs &lt;- tm_map(docs, toSpace, &quot;@&quot;)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, toSpace, &quot;@&quot;): transformation drops
+## documents</code></pre>
+<pre class="r"><code>docs &lt;- tm_map(docs, toSpace, &quot;\\|&quot;)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, toSpace, &quot;\\|&quot;): transformation drops
+## documents</code></pre>
+<pre class="r"><code># Convertir le texte en minuscule
+docs &lt;- tm_map(docs, content_transformer(tolower))</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, content_transformer(tolower)):
+## transformation drops documents</code></pre>
+<pre class="r"><code># Supprimer les nombres
+docs &lt;- tm_map(docs, removeNumbers)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, removeNumbers): transformation drops
+## documents</code></pre>
+<pre class="r"><code># Supprimer les mots vides anglais
+docs &lt;- tm_map(docs, removeWords, stopwords(&quot;english&quot;))</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, removeWords, stopwords(&quot;english&quot;)):
+## transformation drops documents</code></pre>
+<pre class="r"><code># Supprimer votre propre liste de mots non désirés
+docs &lt;- tm_map(docs, removeWords, c(&quot;blabla1&quot;, &quot;blabla2&quot;)) </code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, removeWords, c(&quot;blabla1&quot;, &quot;blabla2&quot;)):
+## transformation drops documents</code></pre>
+<pre class="r"><code># Supprimer les ponctuations
+docs &lt;- tm_map(docs, removePunctuation)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, removePunctuation): transformation
+## drops documents</code></pre>
+<pre class="r"><code># Supprimer les espaces vides supplémentaires
+docs &lt;- tm_map(docs, stripWhitespace)</code></pre>
+<pre><code>## Warning in tm_map.SimpleCorpus(docs, stripWhitespace): transformation drops
+## documents</code></pre>
+<pre class="r"><code># Text stemming
+# docs &lt;- tm_map(docs, stemDocument)</code></pre>
+<p>ANALYSE DU DISCOURS</p>
+<pre><code>##            word freq
+## les         les   48
+## que         que   35
+## nous       nous   32
+## liberté liberté   21
+## est         est   20
+## pas         pas   19
+## des         des   19
+## dans       dans   17
+## notre     notre   16
+## une         une   11</code></pre>
+<p>Création du wordcloud</p>
+<pre class="r"><code>set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, &quot;Dark2&quot;))</code></pre>
+<p><img src="text_m_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<pre class="r"><code>findFreqTerms(dtm, lowfreq = 4)</code></pre>
+<pre><code>##  [1] &quot;aujourd&quot;     &quot;dans&quot;        &quot;hui&quot;         &quot;les&quot;         &quot;liberté&quot;    
+##  [6] &quot;nation&quot;      &quot;notre&quot;       &quot;plus&quot;        &quot;pour&quot;        &quot;que&quot;        
+## [11] &quot;vous&quot;        &quot;comme&quot;       &quot;est&quot;         &quot;injustice&quot;   &quot;leur&quot;       
+## [16] &quot;nous&quot;        &quot;qui&quot;         &quot;son&quot;         &quot;une&quot;         &quot;ans&quot;        
+## [21] &quot;cent&quot;        &quot;mais&quot;        &quot;noir&quot;        &quot;par&quot;         &quot;pas&quot;        
+## [26] &quot;pays&quot;        &quot;sur&quot;         &quot;tard&quot;        &quot;aux&quot;         &quot;blancs&quot;     
+## [31] &quot;chèque&quot;      &quot;ici&quot;         &quot;noirs&quot;       &quot;sommes&quot;      &quot;tous&quot;       
+## [36] &quot;tout&quot;        &quot;venus&quot;       &quot;amérique&quot;    &quot;aussi&quot;       &quot;avec&quot;       
+## [41] &quot;justice&quot;     &quot;ses&quot;         &quot;des&quot;         &quot;dieu&quot;        &quot;enfants&quot;    
+## [46] &quot;heure&quot;       &quot;jour&quot;        &quot;devons&quot;      &quot;nos&quot;         &quot;ensemble&quot;   
+## [51] &quot;être&quot;        &quot;enfin&quot;       &quot;longtemps&quot;   &quot;pourrons&quot;    &quot;satisfaits&quot; 
+## [56] &quot;sera&quot;        &quot;serons&quot;      &quot;mississippi&quot; &quot;même&quot;        &quot;seront&quot;     
+## [61] &quot;cette&quot;       &quot;retournez&quot;   &quot;rêve&quot;        &quot;pourront&quot;    &quot;etat&quot;       
+## [66] &quot;foi&quot;         &quot;cloche&quot;      &quot;libres&quot;      &quot;sonne&quot;       &quot;haut&quot;       
+## [71] &quot;chaque&quot;</code></pre>
+<pre class="r"><code>findAssocs(dtm, terms = &quot;freedom&quot;, corlimit = 0.3)</code></pre>
+<pre><code>## $freedom
+## numeric(0)</code></pre>
+<p>Table de la fréquence des mots</p>
+<pre class="r"><code>head(d, 10)</code></pre>
+<pre><code>##            word freq
+## les         les   48
+## que         que   35
+## nous       nous   32
+## liberté liberté   21
+## est         est   20
+## pas         pas   19
+## des         des   19
+## dans       dans   17
+## notre     notre   16
+## une         une   11</code></pre>
+<pre class="r"><code>barplot(d[1:10,]$freq, las = 2, names.arg = d[1:10,]$word,
+        col =&quot;lightblue&quot;, main =&quot;Most frequent words&quot;,
+        ylab = &quot;Word frequencies&quot;)</code></pre>
+<p><img src="text_m_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
