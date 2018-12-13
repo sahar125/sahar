@@ -1,0 +1,76 @@
+---
+title: "Number of libraries"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+---
+<style>                     
+.navbar {
+  background-color:#6699FF;
+  border-color:black;
+}
+.navbar-brand {
+color:white!important;
+}
+
+</style>                    
+
+
+
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+
+-----------------------------------------------------------------------
+
+### Carte de la Tunisie
+
+```{r echo=FALSE}
+library(leaflet)
+library(readr)
+chom<-read.csv("C:/Users/dell/Downloads/chomage-1.csv")
+values<-c(26,26,23,22,21,21,20,20,19,19,18,17,17,16,16,13,13,13,11,11,11,10,10,10)
+chom<-cbind(chom,values)
+bub<-chom[,-2]
+bub
+codemap= bub
+
+library(raster)
+tnMAP=getData(name = "GADM", country="TUN" , level = 1)
+
+i=match(tnMAP$HASC_1,codemap$HASC_1)
+
+
+tnMAP=cbind.Spatial(tnMAP,codemap[i,])
+
+col=colorRampPalette(c("blue" , "yellow"))                                                                         
+e=col(24) 
+tnMAP@data$values=as.numeric(tnMAP@data$values)
+pal=colorNumeric(e,domain = tnMAP@data$values)
+leaflet(tnMAP)%>%addProviderTiles(providers$CartoDB.Positron )%>% addPolygons(stroke = FALSE , smoothFactor = 0.2 ,fillColor = pal(tnMAP@data$values), fillOpacity = 0.8 ,    popup = paste(tnMAP@data$Area,tnMAP@data$values, 
+                                 sep = " "))%>%  addLegend(pal = pal , values = ~values , opacity = 1.5 , position = "bottomright" )
+                                 
+   
+
+```
+Row {.tabset .tabset-fade}
+-----------------------------------------------------------------------
+
+### les données de la Base
+
+```{r echo=FALSE }
+library(RColorBrewer)
+library(DT)
+data=codemap[,c(1,2)]
+datatable(data , extensions = 'Buttons', options = list(
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel', 'pdf', 'print')
+  ))
+  
+```
+`
+

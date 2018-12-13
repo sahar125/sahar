@@ -1,0 +1,37 @@
+name: "Sahar Hamadi"
+output_dir: "."
+navbar:
+  title: "Sahar Hamadi"
+  left:
+    - text: "CV"
+      href: cv2.html
+    - text: "Cover letter"
+      href: cv.html
+   
+    - text: Projects
+      menu: 
+        - text: Maps of Tunisia 
+          href: Projects.html
+        - text: python
+          href: https://www.kaggle.com/sahar3/python
+     
+      
+      
+    
+  right:
+    - icon: fa-envelope fa-lg
+      href: saharhamadi53@gmail.com
+    - icon: fa-github fa-lg
+      href: https://github.com/sahar125
+    - icon: fa-facebook fa-lg
+      href: https://www.facebook.com/hamadi.sahar.9
+    - icon: fa-linkedin fa-lg
+      href: https://www.linkedin.com/in/sahar-hamadi-06367512b/
+
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    css: styles.css
+    lib_dir: site_libs
+    self_contained: no
